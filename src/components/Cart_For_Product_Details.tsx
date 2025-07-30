@@ -12,8 +12,17 @@ const Cart_For_Product_Details = () => {
 
   return (
     <>
-      <button className="fixed top-4 right-4 z-50" onClick={toggleCart}>
-        <FaShoppingCart className="cursor-pointer text-[1.5rem] sm:text-2xl text-gray-800" />
+      <button className="fixed top-4 right-4 z-50 flex" onClick={toggleCart}>
+        <FaShoppingCart className="cursor-pointer size-8 sm:text-2xl text-gray-800" />
+        <sup
+          className={
+            cartItems.length > 0
+              ? "bg-gray-500 rounded-full w-10 h-10 flex items-center justify-center text-[1.5rem] text-red-600 font-medium animate-pulse"
+              : "bg-gray-500 rounded-full w-10 h-10 flex items-center justify-center text-[1.5rem] text-black font-medium"
+          }
+        >
+          {cartItems.length}
+        </sup>
       </button>
 
       {isCartOpen && (
