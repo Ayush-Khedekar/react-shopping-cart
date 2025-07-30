@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Amul Butter",
+    "imgUrl": "https://modernfoodspune.com/wp-content/uploads/2023/05/Amul-butter.jpg",
+    "price": 62
+  },
+  {
+    "id": 2,
+    "name": "Kissan",
+    "imgUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQ2Pd1Fz33cvLsk1lFznLPb_MkUvHJjraWQp55W2jauREJN7YZzyW3Is59daJ1ZUH8rpIrO17aIE_9Q3iYYlsFbFdysJRQslz6ZYWK8B7GyVBOkBO9LevhMLw",
+    "price": 50
+  },
+  {
+    "id": 3,
+    "name": "Amul Fresh Malai",
+    "imgUrl": "https://m.media-amazon.com/images/I/81hD14MN91L.jpg",
+    "price": 91
+  },
+  {
+    "id": 4,
+    "name": "McCain French Fries",
+    "imgUrl": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTscJCNGbrvRYPwfYRvP0MGd8ScYE3c9mTYjjiIx6btmmIMmxu9AbVRR85H-KgD_RH7y8Vy3MmP_ACD1NeNmtlvNTwtvJm6Mm953JoaaM-zpXut8-2lJi7M",
+    "price": 97
+  }
+]
