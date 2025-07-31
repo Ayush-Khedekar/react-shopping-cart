@@ -1,6 +1,7 @@
 import { IoMdAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
-import { useCart } from "../Hooks/CartContext";
+import { useDispatch } from "react-redux";
+import { addToCart, removeFromCart } from "../features/StoreSlice";
 
 type Props = {
   item: {
@@ -13,17 +14,20 @@ type Props = {
 };
 
 const ButtonsToAddItemsinCart = ({ count, item, priceCount }: Props) => {
-  const { addToCart, removeFromCart } = useCart();
+  const dispatch = useDispatch();
+
   const increment = () => {
-    addToCart({
-      ...item,
-      count: 1,
-      priceCount: item.price,
-    });
+    dispatch(
+      addToCart({
+        ...item,
+        count: 1,
+        priceCount: item.price,
+      })
+    );
   };
 
   const decrement = () => {
-    removeFromCart(item.name);
+    dispatch(removeFromCart(item.name));
   };
 
   return (

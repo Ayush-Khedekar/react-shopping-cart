@@ -1,9 +1,13 @@
+// src/components/Store.tsx
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../features/StoreSlice";
 import ButtonsToAddItemsinCart from "./ButtonsToAddItemsinCart";
 import data from "../items.json";
-import { useCart } from "../Hooks/CartContext";
+import type { RootState } from "../store/Store";
 
 const Store = () => {
-  const { addToCart, cartItems } = useCart();
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state: RootState) => state.cart);
 
   return (
     <div className="px-4 sm:px-6 md:px-[7%] py-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
@@ -46,14 +50,15 @@ const Store = () => {
               <button
                 className="shadow-md shadow-gray-400 bg-blue-500 text-white px-4 py-2 rounded-md hover:scale-105 transition-transform"
                 onClick={() => {
-                  console.log("Adding to cart:", item);
-                  addToCart({
-                    name: item.name,
-                    price: item.price,
-                    img: item.imgUrl,
-                    count: 1,
-                    priceCount: item.price,
-                  });
+                  dispatch(
+                    addToCart({
+                      name: item.name,
+                      price: item.price,
+                      img: item.imgUrl,
+                      count: 1,
+                      priceCount: item.price,
+                    })
+                  );
                 }}
               >
                 Add to Cart

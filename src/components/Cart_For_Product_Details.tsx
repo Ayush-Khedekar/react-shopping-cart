@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { FaShoppingCart } from "react-icons/fa";
-import { useCart } from "../Hooks/CartContext";
 import ButtonsToAddItemsinCart from "./ButtonsToAddItemsinCart";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../store/Store";
+import { removeFromCart } from "../features/StoreSlice";
 
 const Cart_For_Product_Details = () => {
-  const { cartItems, removeFromCart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state: RootState) => state.cart);
 
   function toggleCart() {
     setIsCartOpen((prev) => !prev);
@@ -65,7 +68,7 @@ const Cart_For_Product_Details = () => {
                   </div>
                 </div>
                 <button
-                  onClick={() => removeFromCart(item.name)}
+                  onClick={() => dispatch(removeFromCart(item.name))}
                   className="text-red-500 hover:text-red-700 text-xs mt-1"
                 >
                   Remove
