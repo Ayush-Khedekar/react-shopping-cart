@@ -1,25 +1,29 @@
-import { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { FiMinus } from "react-icons/fi";
+import { useCart } from "../Hooks/CartContext";
 
 type Props = {
-  price: number;
+  item: {
+    name: string;
+    price: number;
+    img: string;
+  };
+  count: number;
+  priceCount: number;
 };
 
-const ButtonsToAddItemsinCart = ({ price }: Props) => {
-  const [count, setCount] = useState(0);
-  const [priceSetter, setPriceSetter] = useState(0);
-
-  const priceIncrement = () => {
-    setCount((prev) => prev + 1);
-    setPriceSetter((prev) => parseFloat((prev + price).toFixed(2)));
+const ButtonsToAddItemsinCart = ({ count, item, priceCount }: Props) => {
+  const { addToCart, removeFromCart } = useCart();
+  const increment = () => {
+    addToCart({
+      ...item,
+      count: 1,
+      priceCount: item.price,
+    });
   };
 
-  const priceDecrement = () => {
-    setCount((prev) => (prev > 0 ? prev - 1 : 0));
-    setPriceSetter((prev) =>
-      prev > 0 ? parseFloat((prev - price).toFixed(2)) : 0
-    );
+  const decrement = () => {
+    removeFromCart(item.name);
   };
 
   return (
@@ -29,14 +33,14 @@ const ButtonsToAddItemsinCart = ({ price }: Props) => {
 
         <div className="flex items-center gap-4">
           <button
-            onClick={priceDecrement}
+            onClick={decrement}
             className="text-gray-600 hover:text-red-500 transition duration-200"
           >
             <FiMinus size={22} />
           </button>
           <span className="text-lg font-semibold">{count}</span>
           <button
-            onClick={priceIncrement}
+            onClick={increment}
             className="text-gray-600 hover:text-green-600 transition duration-200"
           >
             <IoMdAdd size={24} />
@@ -46,7 +50,7 @@ const ButtonsToAddItemsinCart = ({ price }: Props) => {
 
       {count > 0 && (
         <div className="mt-4 text-center text-base sm:text-lg text-green-700 font-semibold">
-          Total: ${priceSetter.toFixed(2)}
+          Total: ${priceCount.toFixed(2)}
         </div>
       )}
     </div>
